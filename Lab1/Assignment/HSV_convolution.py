@@ -81,7 +81,7 @@ def HSV_convolution(kernel_with_type,center):
     else:
         # Hue channel convolution
         hue_convolution = grayscale_convolution.convolution(hue_channel, kernel, center)
-        cv2.normalize(hue_convolution, hue_convolution, 0, 255, cv2.NORM_MINMAX)
+        cv2.normalize(hue_convolution, hue_convolution, 0, 360, cv2.NORM_MINMAX)
         output_hue = np.round(hue_convolution).astype(np.uint8)
         cv2.imshow("Hue convoluted image", output_hue)
 
@@ -99,7 +99,7 @@ def HSV_convolution(kernel_with_type,center):
 
         cv2.waitKey(0)
 
-        output_HSV_image = cv2.merge([hue_channel, saturation_channel, value_channel])
+        output_HSV_image = cv2.merge([output_hue, output_saturation, output_value])
 
         cv2.imshow("HSV Convoluted image", output_HSV_image)
         cv2.waitKey(0)

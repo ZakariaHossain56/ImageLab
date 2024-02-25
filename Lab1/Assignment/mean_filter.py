@@ -7,8 +7,8 @@ def mean(size):
     kernel=np.ones((size, size), dtype=float) / (size**2)
     normalized_kernel = kernel * (size**2)
     print("Mean kernel")
-    # print(kernel)
+    print(kernel)
     print(normalized_kernel)
     return kernel
 
-# mean(3)
+mean(3)

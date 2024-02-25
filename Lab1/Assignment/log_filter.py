@@ -23,9 +23,9 @@ def log(sigma=1.4):
     normalized_kernel = kernel / np.min(np.abs(kernel))
     normalized_kernel=np.round(normalized_kernel).astype(int)
 
-    # print(kernel)
+    print(kernel)
     print(normalized_kernel)
     return kernel
 
 
-# log(1.4)
+log(1.4)
