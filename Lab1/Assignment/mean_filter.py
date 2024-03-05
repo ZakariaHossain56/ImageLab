@@ -11,4 +11,4 @@ def mean(size):
     print(normalized_kernel)
     return kernel
 
-mean(3)
+# mean(3)

@@ -28,4 +28,4 @@ def log(sigma=1.4):
     return kernel
 
 
-log(1.4)
+# log(1.4)

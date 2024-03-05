@@ -25,9 +25,9 @@ def gaussian(sigmax=1,sigmay=1):
     normalized_kernel = kernel / minimum
     normalized_kernel = np.round(normalized_kernel).astype(np.uint8)
 
-    # print(kernel)
-    # print("Gaussian kernel")
-    # print(normalized_kernel)
+    print(kernel)
+    print("Gaussian kernel")
+    print(normalized_kernel)
     return kernel
 
 
