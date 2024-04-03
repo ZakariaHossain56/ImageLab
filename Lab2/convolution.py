@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
-import gaussian_filter
+
+from Lab2 import gaussian_filter
 
 
 def convolution(img,kernel):

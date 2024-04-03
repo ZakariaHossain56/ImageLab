@@ -1,9 +1,10 @@
-
 import cv2
 from matplotlib import pyplot as plt
+import numpy as np
+import math
 
 from Lab2 import convolution
-from gaussian_filter import *
+from Lab2 import gaussian_filter
 
 
 def merge(horizontal_convoluted, vertical_convoluted):
@@ -87,7 +88,7 @@ def plot_historgram(image):
 
 
 def derivative():
-    kernel = gaussian(sigmax=0.7, sigmay=0.7)
+    kernel = gaussian_filter.gaussian(sigmax=0.7, sigmay=0.7)
     size = len(kernel)
 
     x_derivative = np.zeros((size, size))
@@ -145,7 +146,7 @@ x_derivative, y_derivative = derivative()
 convolution_x_derivative = convolution.convolution(image,x_derivative)
 convolution_y_derivative = convolution.convolution(image,y_derivative)
 
-gaussian_filter = gaussian()
+gaussian_filter = gaussian_filter.gaussian()
 
 convolution_x_derivative = convolution.convolution(convolution_x_derivative,gaussian_filter)
 convolution_y_derivative = convolution.convolution(convolution_y_derivative,gaussian_filter)
