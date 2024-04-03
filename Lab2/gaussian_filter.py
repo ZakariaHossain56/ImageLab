@@ -1,14 +1,9 @@
 import math
 import numpy as np
-<<<<<<< HEAD
+
 def gaussian(sigmax=.7,sigmay=.7):
     row = math.floor(7*sigmax)
     column=math.floor(7*sigmay)
-=======
-def gaussian(sigmax=1,sigmay=1):
-    row = math.floor(5*sigmax)
-    column=math.floor(5*sigmay)
->>>>>>> 360c86536199826a753a98a4989fc8e3380f150d
     if(row%2==0):
         row+=1
     if (column % 2 == 0):

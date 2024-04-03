@@ -1,15 +1,8 @@
-import sys
-<<<<<<< HEAD
-import convolution
 
 import cv2
-import numpy as np
-=======
-
-import cv2
->>>>>>> 360c86536199826a753a98a4989fc8e3380f150d
 from matplotlib import pyplot as plt
 
+from Lab2 import convolution
 from gaussian_filter import *
 
 
@@ -60,11 +53,8 @@ def find_threshold(image):
     t = total / (h * w)
 
     dif = find_avg(image=image, t=t)
-<<<<<<< HEAD
     while (abs(dif - t) > 0.000001):
-=======
-    while (abs(dif - t) < 0.000001):
->>>>>>> 360c86536199826a753a98a4989fc8e3380f150d
+
         t = dif
         dif = find_avg(image=image, t=t)
 
@@ -137,23 +127,21 @@ def derivative():
 
 
 image = cv2.imread("lena.jpg", cv2.IMREAD_GRAYSCALE)
-<<<<<<< HEAD
 cv2.imshow("Input grayscale image",image)
 cv2.waitKey(0)
-=======
 
->>>>>>> 360c86536199826a753a98a4989fc8e3380f150d
+
 image = cv2.GaussianBlur(image, (3, 3), 0)
 cv2.imshow("Gaussian Convoluted image", image)
 cv2.waitKey(0)
 
 x_derivative, y_derivative = derivative()
-print("x_derivative kernel")
-print(x_derivative)
-print("y-derivative kernel")
-print(y_derivative)
+# print("x_derivative kernel")
+# print(x_derivative)
+# print("y-derivative kernel")
+# print(y_derivative)
 
-<<<<<<< HEAD
+
 convolution_x_derivative = convolution.convolution(image,x_derivative)
 convolution_y_derivative = convolution.convolution(image,y_derivative)
 
@@ -164,48 +152,21 @@ convolution_y_derivative = convolution.convolution(convolution_y_derivative,gaus
 
 merged_output = merge(convolution_x_derivative, convolution_y_derivative)
 
-=======
-convolution_x_derivative = cv2.filter2D(image, -1, x_derivative)
-convolution_y_derivative = cv2.filter2D(image, -1, y_derivative)
-merged_output = merge(convolution_x_derivative, convolution_y_derivative)
 
-print(convolution_x_derivative)
-print(convolution_y_derivative)
-print(merged_output)
-
->>>>>>> 360c86536199826a753a98a4989fc8e3380f150d
-
-normalized_convolution_x_derivative=cv2.normalize(convolution_x_derivative,convolution_x_derivative, 0, 255, cv2.NORM_MINMAX)
-normalized_convolution_x_derivative = np.round(normalized_convolution_x_derivative).astype(np.uint8)
-
-<<<<<<< HEAD
-
-normalized_convolution_y_derivative=cv2.normalize(convolution_y_derivative,convolution_y_derivative, 0, 255, cv2.NORM_MINMAX)
-normalized_convolution_y_derivative = np.round(normalized_convolution_y_derivative).astype(np.uint8)
-
-
-=======
-normalized_convolution_y_derivative=cv2.normalize(convolution_y_derivative,convolution_y_derivative, 0, 255, cv2.NORM_MINMAX)
-normalized_convolution_y_derivative = np.round(normalized_convolution_y_derivative).astype(np.uint8)
-
->>>>>>> 360c86536199826a753a98a4989fc8e3380f150d
-normalized_merged_output=cv2.normalize(merged_output,merged_output, 0, 255, cv2.NORM_MINMAX)
-normalized_merged_output = np.round(normalized_merged_output).astype(np.uint8)
-
-
-<<<<<<< HEAD
 # print(convolution_x_derivative)
 # print(convolution_y_derivative)
 # print(merged_output)
 
 
+normalized_convolution_x_derivative=cv2.normalize(convolution_x_derivative,convolution_x_derivative, 0, 255, cv2.NORM_MINMAX)
+normalized_convolution_x_derivative = np.round(normalized_convolution_x_derivative).astype(np.uint8)
 
+normalized_convolution_y_derivative=cv2.normalize(convolution_y_derivative,convolution_y_derivative, 0, 255, cv2.NORM_MINMAX)
+normalized_convolution_y_derivative = np.round(normalized_convolution_y_derivative).astype(np.uint8)
 
+normalized_merged_output=cv2.normalize(merged_output,merged_output, 0, 255, cv2.NORM_MINMAX)
+normalized_merged_output = np.round(normalized_merged_output).astype(np.uint8)
 
-
-
-=======
->>>>>>> 360c86536199826a753a98a4989fc8e3380f150d
 cv2.imshow("X derivative convolution", normalized_convolution_x_derivative)
 cv2.imshow("Y derivative convolution", normalized_convolution_y_derivative)
 cv2.imshow("Merged output", normalized_merged_output)
