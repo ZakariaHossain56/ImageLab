@@ -146,8 +146,8 @@ cv2.waitKey(0)
 horizontal_filter, vertical_filter = derivative()
 
 # convolution using sobel filter
-horizontal_convolution = convolution.convolution(image,horizontal_filter)
-vertical_convolution = convolution.convolution(image,vertical_filter)
+horizontal_convolution = convolution.convolution(image,vertical_filter)
+vertical_convolution = convolution.convolution(image,horizontal_filter)
 
 gaussian_filter = gaussian_filter.gaussian()
 
@@ -173,7 +173,13 @@ cv2.imshow("Gradient Magnitude image", normalized_merged_output)
 cv2.waitKey(0)
 
 
-gradient_angle = np.arctan2(vertical_convolution, horizontal_convolution)
+gradient_angle = np.arctan2(vertical_convolution.copy(), horizontal_convolution.copy())
+normalized_gradient_angle=cv2.normalize(gradient_angle,gradient_angle, 0, 255, cv2.NORM_MINMAX)
+normalized_gradient_angle = np.round(normalized_gradient_angle).astype(np.uint8)
+cv2.imshow("Gradient angle",normalized_gradient_angle)
+cv2.waitKey(0)
+
+# merged_convolution = convolution.convolution(merged_output,gaussian_filter)
 
 suppresssed_image = non_maximum_suppression(merged_output,gradient_angle)
 normalized_suppressed_image=cv2.normalize(suppresssed_image,suppresssed_image, 0, 255, cv2.NORM_MINMAX)

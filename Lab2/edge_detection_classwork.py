@@ -143,8 +143,8 @@ x_derivative, y_derivative = derivative()
 # print(y_derivative)
 
 
-convolution_x_derivative = convolution.convolution(image,x_derivative)
-convolution_y_derivative = convolution.convolution(image,y_derivative)
+convolution_x_derivative = convolution.convolution(image,y_derivative)
+convolution_y_derivative = convolution.convolution(image,x_derivative)
 
 gaussian_filter = gaussian_filter.gaussian()
 
