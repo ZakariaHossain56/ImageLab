@@ -6,6 +6,12 @@ from Lab2.Assignment.derivative import derivative
 from sobel_filter import *
 
 
+
+def normalize(image):
+    copied = image.copy()
+    cv2.normalize(copied,copied,0,255,cv2.NORM_MINMAX)
+    return np.round(copied).astype(np.uint8)
+
 def find_avg(image, t=-1):
     total1 = 0
     total2 = 0
@@ -158,14 +164,11 @@ vertical_convolution = convolution.convolution(vertical_convolution,gaussian_fil
 merged_output = merge(horizontal_convolution, vertical_convolution)
 
 # normalized results
-normalized_horizontal_convolution=cv2.normalize(horizontal_convolution, horizontal_convolution,0, 255, cv2.NORM_MINMAX)
-normalized_horizontal_convolution = np.round(normalized_horizontal_convolution).astype(np.uint8)
+normalized_horizontal_convolution=normalize(horizontal_convolution)
 
-normalized_vertical_convolution=cv2.normalize(vertical_convolution,vertical_convolution, 0, 255, cv2.NORM_MINMAX)
-normalized_vertical_convolution = np.round(normalized_vertical_convolution).astype(np.uint8)
+normalized_vertical_convolution=normalize(vertical_convolution)
 
-normalized_merged_output=cv2.normalize(merged_output,merged_output, 0, 255, cv2.NORM_MINMAX)
-normalized_merged_output = np.round(normalized_merged_output).astype(np.uint8)
+normalized_merged_output=normalize(merged_output)
 
 cv2.imshow("Horizontally convoluted image", normalized_horizontal_convolution)
 cv2.imshow("Vertically convoluted image", normalized_vertical_convolution)
@@ -174,30 +177,26 @@ cv2.waitKey(0)
 
 
 gradient_angle = np.arctan2(vertical_convolution.copy(), horizontal_convolution.copy())
-normalized_gradient_angle=cv2.normalize(gradient_angle,gradient_angle, 0, 255, cv2.NORM_MINMAX)
-normalized_gradient_angle = np.round(normalized_gradient_angle).astype(np.uint8)
+normalized_gradient_angle=normalize(gradient_angle)
 cv2.imshow("Gradient angle",normalized_gradient_angle)
 cv2.waitKey(0)
 
 # merged_convolution = convolution.convolution(merged_output,gaussian_filter)
 
 suppresssed_image = non_maximum_suppression(merged_output,gradient_angle)
-normalized_suppressed_image=cv2.normalize(suppresssed_image,suppresssed_image, 0, 255, cv2.NORM_MINMAX)
-normalized_suppressed_image = np.round(normalized_suppressed_image).astype(np.uint8)
+normalized_suppressed_image=normalize(suppresssed_image)
 cv2.imshow("Non maximum suppression",normalized_suppressed_image)
 cv2.waitKey(0)
 
 threshold = find_threshold(image=suppresssed_image)
 
 double_threshold_result,weak,strong = double_thresholding(suppresssed_image,threshold)
-normalized_double_threshold_result=cv2.normalize(double_threshold_result,double_threshold_result, 0, 255, cv2.NORM_MINMAX)
-normalized_double_threshold_result = np.round(normalized_double_threshold_result).astype(np.uint8)
+normalized_double_threshold_result=normalize(double_threshold_result)
 cv2.imshow("Double thresholding",normalized_double_threshold_result)
 cv2.waitKey(0)
 
 hysteresis_output=hysteresis(double_threshold_result,weak,strong)
-normalized_hysteresis_output=cv2.normalize(hysteresis_output,hysteresis_output, 0, 255, cv2.NORM_MINMAX)
-normalized_hysteresis_output = np.round(normalized_hysteresis_output).astype(np.uint8)
+normalized_hysteresis_output=normalize(hysteresis_output)
 cv2.imshow("Final hysteresis output",normalized_hysteresis_output)
 
 cv2.waitKey(0)
