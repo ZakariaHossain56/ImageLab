@@ -176,7 +176,7 @@ cv2.waitKey(0)
 
 threshold = find_threshold(image=normalized_merged_output)
 
-final_output = make_binary(threshold=threshold, image=normalized_merged_output)
+final_output = make_binary(threshold=threshold * 0.8,image=normalized_merged_output)
 cv2.imshow("Final detected edge", final_output)
 cv2.waitKey(0)
 
