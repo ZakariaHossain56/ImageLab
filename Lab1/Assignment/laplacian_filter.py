@@ -11,8 +11,11 @@ def laplacian(size=3):
     kernel_negative = np.ones((size,size),dtype=int)*1
     kernel_negative[center][center]=-(size**2-1)
 
-    print(kernel_positive)
-    print(kernel_negative)
+    # print(kernel_positive)
+    # print(kernel_negative)
     return (kernel_positive,kernel_negative)
 
-laplacian(3)
+
+positive,negative = laplacian(3)
+print(positive)
+print(negative)
